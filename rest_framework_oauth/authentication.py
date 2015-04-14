@@ -173,7 +173,12 @@ class OAuth2Authentication(BaseAuthentication):
         except oauth2_provider.oauth2.models.AccessToken.DoesNotExist:
             raise exceptions.AuthenticationFailed('Invalid token')
 
-        user = token.user
+        if token.user_type == 'user':
+            user = token.user
+        elif token.user_type == 'store':
+            user = token.store
+        else:
+            user = None
 
         if not user.is_active:
             msg = 'User inactive or deleted: %s' % user.get_username()
