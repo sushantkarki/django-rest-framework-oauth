@@ -76,9 +76,6 @@ if sys.argv[-1] == 'publish':
     print("  git push --tags")
     sys.exit()
 
-import os
-
-os.system('pip install git+ssh://git@github.com/minma/django-oauth2-provider.git@master#egg=django-oauth2-provider')
 setup(
     name=name,
     version=version,
