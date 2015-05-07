@@ -173,9 +173,9 @@ class OAuth2Authentication(BaseAuthentication):
         except oauth2_provider.oauth2.models.AccessToken.DoesNotExist:
             raise exceptions.AuthenticationFailed('Invalid token')
 
-        if token.user_type == 'user':
+        if token.access_type == 'user':
             user = token.user
-        elif token.user_type == 'store':
+        elif token.access_type == 'store':
             user = token.store
         else:
             user = None
